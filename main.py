@@ -1,3 +1,20 @@
+
+
+print('Hi, welcome to your Musician Contacts')
+
+file_name = 'contacts.csv'
+
+try:
+    mcontact_file = open(file_name, 'r')
+
+    mcontact_file.close()
+
+except FileNotFoundError as e:
+    mcontact_file = open(file_name, 'w')
+    mcontact_file.write('Name, Phone, Email, Socials, Instrument, City\n')
+    mcontact_file.close()
+        
+
 def create_menu():
     print('1. Press 1 to Search by Name')
     print('2. Press 2 to Search by Instrument/Location')
