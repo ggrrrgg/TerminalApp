@@ -37,7 +37,7 @@ while user_choice != '6':
     elif (user_choice == '3'):
         pass
     elif (user_choice == '4'):
-        pass
+        remove_mcontact(file_name)
     elif (user_choice == '5'):
         browse_mcontact(file_name)
     elif (user_choice == '6'):
