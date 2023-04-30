@@ -21,13 +21,38 @@ def add_mcontact(file_name):
             break
 
     
-def edit_mcontact(file_name):
-    pass
+def update_mcontact(file_name):
+    
+    while True:
+        mcontact_name = input('Enter the name of the Contact to Update: ')
+        mcontact_lists = []
+        
+        with open(file_name, 'r') as mcontact_file:
+            reader = csv.reader(mcontact_file)
+            for row in reader:
+                if (mcontact_name == row[0]):
+                    mcontact_lists.append(row)
+                    print(row)
+        
+        mcontact_update = input('Which Detail do you want to Update? ')
+        mcontact_new_detail = input('Enter the New Detail: ')
+        
+        for row in mcontact_lists:
+            if mcontact_update in row:
+                row[row.index(mcontact_update)] = mcontact_new_detail
+
+        print('Updating...')
+        print(mcontact_lists)
+        print('Contact Updated')
+        
+        another = input('Would you like to Update another Contact? (y/n): ')
+        if another != 'y':
+            break        
 
 def remove_mcontact(file_name):
 
     while True: 
-        print('Removing Contact...')
+        print('Remove Contact...')
         mcontact_name = input('Enter the name of the contact you want to remove: ')
         mcontact_lists = []
         
@@ -48,10 +73,8 @@ def remove_mcontact(file_name):
         if another != 'y':
             break
 
-
-
 def browse_mcontact(file_name):
-    print('Browsing Contacts...')
+    print('Displaying Contacts...')
     with open(file_name, 'r')as reader:
         csv.reader = reader
         for row in csv.reader:

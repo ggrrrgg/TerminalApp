@@ -1,4 +1,4 @@
-from mcontact_functions import search_mcontact, add_mcontact, edit_mcontact, remove_mcontact, browse_mcontact
+from mcontact_functions import search_mcontact, add_mcontact, update_mcontact, remove_mcontact, browse_mcontact
 
 print('Hi, welcome to your Musician Contacts')
 
@@ -18,7 +18,7 @@ except FileNotFoundError as e:
 def create_menu():
     print('1. Press 1 to Search a Contact')
     print('2. Press 2 to Add a New Contact')
-    print('3. Press 3 to Edit a Contact')
+    print('3. Press 3 to Update a Contact')
     print('4. Press 4 to Remove a Contact')
     print('5. Press 5 to Browse Contacts')
     print('6. Press 6 to Exit')
@@ -35,7 +35,7 @@ while user_choice != '6':
     elif (user_choice == '2'):
         add_mcontact(file_name)
     elif (user_choice == '3'):
-        pass
+        update_mcontact(file_name)
     elif (user_choice == '4'):
         remove_mcontact(file_name)
     elif (user_choice == '5'):
