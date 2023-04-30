@@ -24,44 +24,29 @@ def add_mcontact(file_name):
 def edit_mcontact(file_name):
     pass
 
-# def remove_mcontact(file_name): 
-#     print('Removing Contact...')
-#     browse_mcontact(file_name)
-#     mcontact_name = input('Enter the name of the contact you want to remove: ')
-#     mcontact_lists = []
-    
-#     with open(file_name, 'r') as mcontact_file:
-#         reader = csv.reader(mcontact_file)
-#         for row in reader:
-#             if(mcontact_name != row[0]):
-#                 mcontact_lists.append(row)
-#     print(mcontact_lists)
-
-#     with open(file_name, 'w')as mcontact_file:
-#         writer = csv.writer(mcontact_file)
-#         writer.writerows(mcontact_lists)
-
-
 def remove_mcontact(file_name):
-    print(f"Opening file '{file_name}'") 
-    print('Removing Contact...')
-    browse_mcontact(file_name)
-    mcontact_name = input('Enter the name of the contact you want to remove: ')
-    mcontact_lists = []
-    
-    with open(file_name, 'r')as csv_file:
-        reader = csv.reader(csv_file)
-        for row in reader:
-            if not row:
-                continue
-            if(mcontact_name != row[0]):
-                mcontact_lists.append(row)
-    print(mcontact_lists)
 
-    with open(file_name, 'w')as mcontact_file:
-        writer = csv.writer(mcontact_file)
-        writer.writerows(mcontact_lists)
+    while True: 
+        print('Removing Contact...')
+        mcontact_name = input('Enter the name of the contact you want to remove: ')
+        mcontact_lists = []
+        
+        with open(file_name, 'r')as mcontact_file:
+            reader = csv.reader(mcontact_file)
+            for row in reader:
+                if not row:
+                    continue
+                if(mcontact_name != row[0]):
+                    mcontact_lists.append(row)
+        print(mcontact_lists)
 
+        with open(file_name, 'w')as mcontact_file:
+            writer = csv.writer(mcontact_file)
+            writer.writerows(mcontact_lists)
+        print('Contact Removed')
+        another = input('Would you like to Remove another Contact? (y/n): ')
+        if another != 'y':
+            break
 
 
 
