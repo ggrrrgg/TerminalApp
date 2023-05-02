@@ -1,6 +1,7 @@
 import csv
 
 def search_mcontact(contact_master):
+
     
     search_name = input('Search by Name? (y/n): ')
     if search_name == 'y':
@@ -19,7 +20,7 @@ def search_mcontact(contact_master):
             
         else:
             instr_lookup = input('What kind of Instrumentalist do you need? ')
-            city_lookup = input('Which city should they be based? ')
+            city_lookup = input('In which City / Location? ')
             with open(contact_master, 'r') as f:
                 reader = csv.reader(f)
                 match_count = 0
@@ -50,7 +51,8 @@ def add_mcontact(contact_master):
 
 def update_mcontact(contact_master):
     
-    # browse_mcontact(file_name)
+    browse_mcontact(contact_master)
+
     while True:
         mcontact_name = input('Enter the name of the Contact to Update: ')
         mcontact_lists = []
@@ -87,6 +89,8 @@ def update_mcontact(contact_master):
 
 def remove_mcontact(contact_master):
     
+    browse_mcontact(contact_master)
+    
     while True: 
         print('Remove Contact...')
         mcontact_name = input('Enter the name of the contact you want to remove: ')
@@ -104,7 +108,7 @@ def remove_mcontact(contact_master):
         with open(contact_master, 'w')as f:
             writer = csv.writer(f)
             writer.writerows(mcontact_lists)
-        print('Contact Removed')
+        print(f'{mcontact_name} Removed')
         
         another = input('Would you like to Remove another Contact? (y/n): ')
         if another != 'y':
@@ -114,9 +118,9 @@ def browse_mcontact(contact_master):
     
     print('Displaying Contacts...')
     
-    with open(contact_master, 'r')as reader:
-        csv.reader = reader
-        for row in csv.reader:
+    with open(contact_master, 'r')as f:
+        reader = csv.reader(f)
+        for row in reader:
             print(row)
 
    
