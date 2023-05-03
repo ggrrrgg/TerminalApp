@@ -9,51 +9,55 @@ console = Console()
 def search_mcontact(contact_master):
 
     console.print('Search Contacts', style='bold cyan')
-
-    search_name = input('Search by Name? (y/n): ')
-    if search_name.lower() == 'y':
-        name_lookup = input('Enter the Name of the Contact: ').strip()
-        with open(contact_master, 'r') as f:
-            reader = csv.reader(f)
-            found_match = False
-            for row in reader:
-                if (name_lookup == row[0]):
-                    console.print(*row, style='bold cyan')
-                    found_match = True
-            if not found_match:
-                console.print('Sorry, no matches for that name', style='bold cyan')
-                return
-                
-    else:
-        search_instr = input('Search by Instrument/City? (y/n): ')
-        if search_instr.lower() != 'y':
-            console.print('Returning to Main Menu', style='bold cyan')
-            
-        else:
-            instr_lookup = input('What kind of Instrumentalist do you need? ').strip()
-            city_lookup = input('In which City / Location? ').strip()
+    
+    while True:
+        search_name = input('Search by Name? (y/n): ')
+        if search_name.lower() == 'y':
+            name_lookup = input('Enter the Name of the Contact: ').strip()
             with open(contact_master, 'r') as f:
                 reader = csv.reader(f)
-                match_count = 0
+                found_match = False
                 for row in reader:
-                    if(instr_lookup == row[3] and city_lookup == row[4]):
-                        with Progress() as progress:
-                            task1 = progress.add_task("[cyan]Searching...", total=10)
-                            while not progress.finished:
-                                progress.update(task1, advance=0.6)
-                                time.sleep(0.1)
+                    if (name_lookup == row[0]):
                         console.print(*row, style='bold cyan')
-                        match_count += 1
-                if match_count == 0:
-                    console.print('Sorry, no matches for that instrument in that location', style='bold cyan')
-                        
+                        found_match = True
+                if not found_match:
+                    console.print('Sorry, no matches for that name', style='bold cyan')
+                    return
+                
+
+        else:
+            search_instr = input('Search by Instrument/City? (y/n): ')
+            if search_instr.lower() != 'y':
+                console.print('Returning to Main Menu', style='bold cyan')
                     
+            else:
+                instr_lookup = input('What kind of Instrumentalist do you need? ').strip()
+                city_lookup = input('In which City / Location? ').strip()
+                with open(contact_master, 'r') as f:
+                    reader = csv.reader(f)
+                    match_count = 0
+                    for row in reader:
+                        if(instr_lookup == row[3] and city_lookup == row[4]):
+                            with Progress() as progress:
+                                task1 = progress.add_task("[cyan]Searching...", total=10)
+                                while not progress.finished:
+                                    progress.update(task1, advance=0.6)
+                                    time.sleep(0.1)
+                            console.print(*row, style='bold cyan')
+                            match_count += 1
+                    if match_count == 0:
+                        console.print('Sorry, no matches for that instrument in that location', style='bold cyan')
+            
+        another = input('Would you like to Search again? y/n: ').strip()
+        if another.lower() != 'y':
+            return                        
+                        
 def add_mcontact(contact_master):
     
     console.print('Add Contact', style='bold green')
     
     while True:
-        
         mcontact_name = input('Enter name: ').strip()
         mcontact_phone = input('Enter ph number: ').strip()
         mcontact_email = input('Enter email: ').strip()

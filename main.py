@@ -19,7 +19,6 @@ except FileNotFoundError as e:
     mcontact_file.write('NAME, PHONE, EMAIL, INSTRUMENT, CITY\n')
     mcontact_file.close()
         
-
 def create_menu():
     print()
     console.print('Press 1 to [bold cyan]Search[/] a Contact')
