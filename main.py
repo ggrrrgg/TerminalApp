@@ -1,7 +1,10 @@
 from mcontact_functions import search_mcontact, add_mcontact, update_mcontact, remove_mcontact, browse_mcontact
-import csv
+from rich import print
+from rich.console import Console
 
-print('Hi, welcome to your Musician Contacts')
+console = Console()
+
+console.print(':guitar:'' Hi, welcome to your Musician Contacts '':guitar:', style='bold underline red on light_goldenrod1')
 
 contact_master = 'contacts.csv'
 
@@ -17,12 +20,12 @@ except FileNotFoundError as e:
 
 def create_menu():
     
-    print('1. Press 1 to Search a Contact')
-    print('2. Press 2 to Add a New Contact')
-    print('3. Press 3 to Update a Contact')
-    print('4. Press 4 to Remove a Contact')
-    print('5. Press 5 to Browse Contacts')
-    print('6. Press 6 to Exit')
+    console.print('Press 1 to [bold cyan]Search[/] a Contact')
+    console.print('Press 2 to [bold green]Add[/] a New Contact')
+    console.print('Press 3 to [bold purple]Update[/] a Contact')
+    console.print('Press 4 to [bold red]Remove[/] a Contact')
+    console.print('Press 5 to [bold dark_orange]Browse[/] Contacts')
+    console.print('Press 6 to [bold yellow]Exit[/]')
     
     choice = input('Enter your Selection: ')
     return choice
@@ -49,5 +52,5 @@ while user_choice != '6':
 
     input('Press Enter to continue...')
 
-print('Thankyou bye bye')
+console.print(':waving_hand:'' Thankyou bye bye '':waving_hand:', style='bold underline light_goldenrod1')
 

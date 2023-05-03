@@ -1,22 +1,31 @@
 import csv
+from rich import print
+from rich.console import Console
+
+console = Console()
 
 def search_mcontact(contact_master):
 
-    
+    console.print('Search Contacts', style='bold cyan')
+
     search_name = input('Search by Name? (y/n): ')
     if search_name == 'y':
         name_lookup = input('Enter the Name of the Contact: ')
         with open(contact_master, 'r') as f:
             reader = csv.reader(f)
+            found_match = False
             for row in reader:
                 if (name_lookup == row[0]):
-                    print(row)
-                    return
+                    console.print(row, style='bold cyan')
+                    found_match = True
+            if not found_match:
+                console.print('Sorry, no matches for that name', style='bold cyan')
+                return
                 
     else:
         search_instr = input('Search by Instrument/City? (y/n): ')
         if search_instr != 'y':
-            print('Returning to Main Menu')
+            console.print('Returning to Main Menu', style='bold cyan')
             
         else:
             instr_lookup = input('What kind of Instrumentalist do you need? ')
@@ -26,14 +35,15 @@ def search_mcontact(contact_master):
                 match_count = 0
                 for row in reader:
                     if(instr_lookup == row[3] and city_lookup == row[4]):
-                        print(row)
+                        console.print(row, style='bold cyan')
                         match_count += 1
                 if match_count == 0:
-                    print('Sorry, no matches for that instrument in that location')
+                    console.print('Sorry, no matches for that instrument in that location', style='bold cyan')
                         
                     
 def add_mcontact(contact_master):
     
+    console.print('Add Contact', style='bold green')
     while True:
         print('Adding New Contact...')
         mcontact_name = input('Enter name: ')
@@ -44,13 +54,14 @@ def add_mcontact(contact_master):
         with open(contact_master, 'a') as mcontact_file:
             writer = csv.writer(mcontact_file)
             writer.writerow([mcontact_name, mcontact_phone, mcontact_email, mcontact_instr, mcontact_city])
-        print('Contact Added')
+        console.print('Contact Added', style='bold green')
         another = input('Would you like to Add another Contact? (y/n): ')
         if another != 'y':
             break     
 
 def update_mcontact(contact_master):
     
+    console.print('Update Contact', style='bold purple')
     browse_mcontact(contact_master)
 
     while True:
@@ -59,10 +70,15 @@ def update_mcontact(contact_master):
         
         with open(contact_master, 'r') as f:
             reader = csv.reader(f)
+            found_match = False
             for row in reader:
                 if (mcontact_name == row[0]):
                     mcontact_lists.append(row)
-                    print(row)
+                    console.print(row, style='bold purple')
+                    found_match = True
+            if not found_match:
+                console.print('Sorry, could not find a contact with that name', style='bold purple')
+                return
         
         mcontact_update = input('Which Detail do you want to Update? ')
         mcontact_new_detail = input('Enter the New Detail: ')
@@ -79,9 +95,9 @@ def update_mcontact(contact_master):
             writer = csv.writer(f)
             writer.writerows(rows)
         
-        print('Updating...')
-        print(mcontact_lists)
-        print('Contact Updated')
+        console.print('Updating...', style='bold purple')
+        console.print(mcontact_lists, style='bold purple')
+        console.print('Contact Updated', style='bold purple')
         
         another = input('Would you like to Update another Contact? (y/n): ')
         if another != 'y':
@@ -89,26 +105,25 @@ def update_mcontact(contact_master):
 
 def remove_mcontact(contact_master):
     
+    console.print('Remove Contact', style= 'bold red')
     browse_mcontact(contact_master)
     
     while True: 
-        print('Remove Contact...')
+        
         mcontact_name = input('Enter the name of the contact you want to remove: ')
         mcontact_lists = []
         
         with open(contact_master, 'r')as f:
             reader = csv.reader(f)
             for row in reader:
-                if not row:
-                    continue
                 if(mcontact_name != row[0]):
                     mcontact_lists.append(row)
-        # print(mcontact_lists)
-
+                    return
+                
         with open(contact_master, 'w')as f:
             writer = csv.writer(f)
             writer.writerows(mcontact_lists)
-        print(f'{mcontact_name} Removed')
+        console.print(f'{mcontact_name} Removed', style='bold red')
         
         another = input('Would you like to Remove another Contact? (y/n): ')
         if another != 'y':
@@ -116,12 +131,12 @@ def remove_mcontact(contact_master):
 
 def browse_mcontact(contact_master):
     
-    print('Displaying Contacts...')
+    console.print('Displaying Contacts...', style='bold dark_orange')
     
     with open(contact_master, 'r')as f:
         reader = csv.reader(f)
         for row in reader:
-            print(row)
+            console.print(row, style='bold dark_orange')
 
    
     
