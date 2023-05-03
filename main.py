@@ -14,7 +14,7 @@ try:
 
 except FileNotFoundError as e:
     mcontact_file = open(contact_master, 'w')
-    mcontact_file.write('Name, Phone, Email, Instrument, City\n')
+    mcontact_file.write('NAME, PHONE, EMAIL, INSTRUMENT, CITY\n')
     mcontact_file.close()
         
 
@@ -35,20 +35,21 @@ user_choice = ''
 while user_choice != '6':
     user_choice = create_menu()
 
-    if (user_choice == '1'):
-        search_mcontact(contact_master)
-    elif (user_choice == '2'):
-        add_mcontact(contact_master)
-    elif (user_choice == '3'):
-        update_mcontact(contact_master)
-    elif (user_choice == '4'):
-        remove_mcontact(contact_master)
-    elif (user_choice == '5'):
-        browse_mcontact(contact_master)
-    elif (user_choice == '6'):
-        continue
-    else:
-        print('Invalid Input')
+    match user_choice:
+        case '1':
+            search_mcontact(contact_master)
+        case '2':
+            add_mcontact(contact_master)
+        case '3':
+            update_mcontact(contact_master)
+        case '4':
+            remove_mcontact(contact_master)
+        case '5':
+            browse_mcontact(contact_master)
+        case '6':
+            continue
+        case x:
+            console.print('Invalid Input', style= 'bold red')
 
     input('Press Enter to continue...')
 

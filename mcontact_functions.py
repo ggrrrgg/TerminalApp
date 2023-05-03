@@ -16,7 +16,7 @@ def search_mcontact(contact_master):
             found_match = False
             for row in reader:
                 if (name_lookup == row[0]):
-                    console.print(row, style='bold cyan')
+                    console.print(*row, style='bold cyan')
                     found_match = True
             if not found_match:
                 console.print('Sorry, no matches for that name', style='bold cyan')
@@ -35,7 +35,7 @@ def search_mcontact(contact_master):
                 match_count = 0
                 for row in reader:
                     if(instr_lookup == row[3] and city_lookup == row[4]):
-                        console.print(row, style='bold cyan')
+                        console.print(*row, style='bold cyan')
                         match_count += 1
                 if match_count == 0:
                     console.print('Sorry, no matches for that instrument in that location', style='bold cyan')
@@ -44,8 +44,9 @@ def search_mcontact(contact_master):
 def add_mcontact(contact_master):
     
     console.print('Add Contact', style='bold green')
+    
     while True:
-        print('Adding New Contact...')
+        
         mcontact_name = input('Enter name: ')
         mcontact_phone = input('Enter ph number: ')
         mcontact_email = input('Enter email: ')
@@ -74,7 +75,7 @@ def update_mcontact(contact_master):
             for row in reader:
                 if (mcontact_name == row[0]):
                     mcontact_lists.append(row)
-                    console.print(row, style='bold purple')
+                    console.print(*row, style='bold cyan')
                     found_match = True
             if not found_match:
                 console.print('Sorry, could not find a contact with that name', style='bold purple')
@@ -96,7 +97,8 @@ def update_mcontact(contact_master):
             writer.writerows(rows)
         
         console.print('Updating...', style='bold purple')
-        console.print(mcontact_lists, style='bold purple')
+        for contact in mcontact_lists:
+            console.print(*contact, style='bold cyan')
         console.print('Contact Updated', style='bold purple')
         
         another = input('Would you like to Update another Contact? (y/n): ')
@@ -118,7 +120,7 @@ def remove_mcontact(contact_master):
             for row in reader:
                 if(mcontact_name != row[0]):
                     mcontact_lists.append(row)
-                    return
+                    
                 
         with open(contact_master, 'w')as f:
             writer = csv.writer(f)
@@ -136,7 +138,7 @@ def browse_mcontact(contact_master):
     with open(contact_master, 'r')as f:
         reader = csv.reader(f)
         for row in reader:
-            console.print(row, style='bold dark_orange')
+            console.print(*row, style='bold cyan')
 
    
     
