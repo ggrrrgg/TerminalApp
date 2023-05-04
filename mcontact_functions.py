@@ -4,6 +4,7 @@ from rich.console import Console
 import time
 from rich.progress import Progress
 
+
 console = Console()
 
 def search_mcontact(contact_master):
@@ -193,6 +194,6 @@ def browse_mcontact(contact_master):
         reader = csv.reader(f)
         for row in reader:
             console.print(*row, style='bold cyan')
-
+   
    
     
