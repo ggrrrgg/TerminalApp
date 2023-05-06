@@ -57,4 +57,4 @@ while user_choice != '6':
 print()
 console.print(':waving_hand:'' Thankyou for using... '':waving_hand:', style='bold underline light_goldenrod1 on red')
 print()
-tprint('BYE', 'rnd-medium')
+tprint('GOODBYE', 'rnd-medium')
