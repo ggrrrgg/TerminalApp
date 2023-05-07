@@ -80,7 +80,7 @@ def search_mcontact(contact_master):
 #Add Contact                        
 def add_mcontact(contact_master):
     console.print('Add Contact', style='bold green')
-    #Using integers to prevent infinite loop if user just hits enter
+    #Using integer to prevent infinite loop if user just hits enter repeatedly
     tries = 0
     while True:
         mcontact_name = input('Enter name: ').strip()
@@ -102,15 +102,15 @@ def add_mcontact(contact_master):
         mcontact_instr = input('Instrument / job: ').strip()
         mcontact_city = input('Enter city: ').strip()
         if mcontact_instr == '' and mcontact_city == '':
-            console.print('Sorry, Contact must have an Instrument or a Location'
-                          , style= 'bold red')
-            continue
+                console.print('Sorry, Contact must have an Instrument or a Location'
+                            , style= 'bold red')
+                continue
         #Write user input to csv
         with open(contact_master, 'a') as mcontact_file:
             writer = csv.writer(mcontact_file)
             writer.writerow([mcontact_name, mcontact_phone, mcontact_email,
-                              mcontact_instr, mcontact_city])
-        console.print('Contact Added', style='bold green')
+                            mcontact_instr, mcontact_city])
+            console.print('Contact Added', style='bold green')
         #Loop function?
         another = input('Would you like to Add another Contact? (y/n): ')
         if another.lower() != 'y':
