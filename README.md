@@ -10,6 +10,10 @@ https://github.com/ggrrrgg/TerminalApp
 
 https://trello.com/b/99cdDa23/terminal-app
 
+## Presentation Video:
+
+https://vimeo.com/824479988?share=copy
+
 ---
 ## INSTALLATION:
 
