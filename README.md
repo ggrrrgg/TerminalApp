@@ -19,7 +19,7 @@ https://vimeo.com/824479988?share=copy
 
 - To run mcontacts, you will need Python 3 (at least v3.7) installed on your system. 
 
-- Open an instance of Terminal and navigate to the application directory.
+- Open an instance of Terminal and navigate to the 'src' folder within the application directory.
 
 - Type ./run.sh and hit enter.
 
