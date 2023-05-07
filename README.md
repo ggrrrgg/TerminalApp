@@ -13,13 +13,13 @@ https://trello.com/b/99cdDa23/terminal-app
 ---
 ## INSTALLATION:
 
-- To run mcontacts, you will need Python 3 installed on your system. 
+- To run mcontacts, you will need Python 3 (at least v3.7) installed on your system. 
 
 - Open an instance of Terminal and navigate to the application directory.
 
 - Type ./run.sh and hit enter.
 
-- Additional required Python modules will be automatically installed and the application will run. For reference of modules, see requirements.txt.
+- Additional required Python modules will be automatically installed and the application will run. For further reference of modules, see requirements.txt.
 
 ___
 
@@ -49,6 +49,15 @@ Storage: 40MB
 Application may run with lower spec but is untested.
 
 ---
+## Development Notes:
+Included is a pytest file. Run this by entering ./runpytest.sh in the terminal. This will test 2 functions of the program <i>(note press 6 when the main menu appears during the test to complete it).</i>
+
+I applied DRY principles as best I could, a lot of lines of code for each function are almost identical and with tweaking the wording of output to the user they could have been turned into functions that would be globally applicable, BUT I decided not to do this as it has a less meaningful experience for the user.
+
+eg.
+I have used the progress bar feature from the rich module in a couple of functions, the ony difference is in the search function it displays 'Searching...', in the update function it displays 'Updating...'. Here I could have changed the word to 'Processing...'.
+
+I had some problems with applying code style, specifically to line length, in several places I have nested if else statements that push the line length out but when I tried to format them using \ etc, the code breaks or displays bad looking out put to the user so I have left them.
 
 
 
